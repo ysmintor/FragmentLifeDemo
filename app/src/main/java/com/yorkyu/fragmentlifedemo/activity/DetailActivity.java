@@ -48,40 +48,30 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        Log.d(TAG, "onStart: backstack num = " + mSupportFragmentManager.getBackStackEntryCount());
-
         super.onStart();
         Log.d(TAG, "onStart: ");
     }
 
     @Override
     protected void onPause() {
-        Log.d(TAG, "onPause: backstack num = " + mSupportFragmentManager.getBackStackEntryCount());
-
         super.onPause();
         Log.d(TAG, "onPause: ");
     }
 
     @Override
     protected void onStop() {
-        Log.d(TAG, "onStop: backstack num = " + mSupportFragmentManager.getBackStackEntryCount());
-
         super.onStop();
         Log.d(TAG, "onStop: ");
     }
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "onDestroy: backstack num = " + mSupportFragmentManager.getBackStackEntryCount());
-
         super.onDestroy();
         Log.d(TAG, "onDestroy: ");
     }
 
     @Override
     protected void onRestart() {
-        Log.d(TAG, "onRestart: backstack num = " + mSupportFragmentManager.getBackStackEntryCount());
-
         super.onRestart();
         Log.d(TAG, "onRestart: ");
     }

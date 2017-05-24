@@ -77,9 +77,11 @@ public class AFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState: backstack num = " + mChildFragmentManager.getBackStackEntryCount());
 
-        Log.d(TAG, "onSaveInstanceState: clear backstack");
-
-        mChildFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        int backStackEntryCount = mChildFragmentManager.getBackStackEntryCount();
+//        mChildFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//        for (int i = 0; i < backStackEntryCount; i++) {
+//            mChildFragmentManager.popBackStackImmediate();
+//        }
 
         Log.d(TAG, "onSaveInstanceState: backstack num = " + mChildFragmentManager.getBackStackEntryCount());
 
@@ -140,7 +142,6 @@ public class AFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "onDestroy: backstack num = " + mChildFragmentManager.getBackStackEntryCount());
         super.onDestroy();
         Log.d(TAG, "onDestroy: ");
     }
@@ -153,7 +154,6 @@ public class AFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        Log.d(TAG, "onDetach: backstack num = " + mChildFragmentManager.getBackStackEntryCount());
         super.onDetach();
         Log.d(TAG, "onDetach: ");
 
