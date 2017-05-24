@@ -36,7 +36,6 @@ public class AFragment extends Fragment {
      *
      * @return A new instance of fragment AFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static AFragment newInstance() {
         AFragment fragment = new AFragment();
         return fragment;
@@ -46,6 +45,12 @@ public class AFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
+
+        if (savedInstanceState != null) {
+
+        } else {
+
+        }
 
     }
 
@@ -75,17 +80,12 @@ public class AFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState: backstack num = " + mChildFragmentManager.getBackStackEntryCount());
+        super.onSaveInstanceState(outState);
 
         int backStackEntryCount = mChildFragmentManager.getBackStackEntryCount();
-//        mChildFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//        for (int i = 0; i < backStackEntryCount; i++) {
-//            mChildFragmentManager.popBackStackImmediate();
-//        }
-
-        Log.d(TAG, "onSaveInstanceState: backstack num = " + mChildFragmentManager.getBackStackEntryCount());
-
-        super.onSaveInstanceState(outState);
+        for (int i = 0; i < backStackEntryCount; i++) {
+            mChildFragmentManager.popBackStackImmediate();
+        }
         Log.d(TAG, "onSaveInstanceState: ");
     }
 
@@ -135,7 +135,6 @@ public class AFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        Log.d(TAG, "onDestroyView: backstack num = " + mChildFragmentManager.getBackStackEntryCount());
         super.onDestroyView();
         Log.d(TAG, "onDestroyView: ");
     }

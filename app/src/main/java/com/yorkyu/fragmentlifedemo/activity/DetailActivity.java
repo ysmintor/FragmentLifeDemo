@@ -3,6 +3,7 @@ package com.yorkyu.fragmentlifedemo.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,8 +12,11 @@ import android.widget.FrameLayout;
 import com.yorkyu.fragmentlifedemo.R;
 import com.yorkyu.fragmentlifedemo.fragment.AFragment;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -30,17 +34,17 @@ public class DetailActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: ");
 
-        initView();
+        if (savedInstanceState == null) {
+            initView();
+        }
     }
 
     private void initView() {
         mAFragment = AFragment.newInstance();
         mSupportFragmentManager = getSupportFragmentManager();
-        FragmentManager supportFragmentManager = mSupportFragmentManager;
         mSupportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fl_content, mAFragment)
-                .addToBackStack(null)
                 .commit();
 
     }
@@ -78,11 +82,14 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState: backstack num = " + mSupportFragmentManager.getBackStackEntryCount());
-        for (int i = 0; i < mSupportFragmentManager.getBackStackEntryCount(); i++) {
-            mSupportFragmentManager.popBackStackImmediate();
-        }
-        Log.d(TAG, "onSaveInstanceState: backstack num = " + mSupportFragmentManager.getBackStackEntryCount());
+
+//        List<Fragment> fragments = mSupportFragmentManager.getFragments();
+//        for (int i = 0; i < fragments.size(); i++) {
+//            mSupportFragmentManager
+//                    .beginTransaction()
+//                    .remove(fragments.get(i))
+//                    .commit();
+//        }
 
         super.onSaveInstanceState(outState);
         Log.d(TAG, "onSaveInstanceState: ");
@@ -98,5 +105,10 @@ public class DetailActivity extends AppCompatActivity {
     public static void start(Context context) {
         Intent starter = new Intent(context, DetailActivity.class);
         context.startActivity(starter);
+    }
+
+    @OnClick(R.id.btn_another)
+    public void onViewClicked() {
+        AnotherActivity.start(this);
     }
 }
